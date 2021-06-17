@@ -4,8 +4,6 @@ import Footer from 'components/Footer'
 
 const Layout = ({children}) => {
 
-  console.log(children)
-
   return (
     <div className="layout">
       <Header />
