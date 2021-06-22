@@ -40,7 +40,7 @@ const Students = ({data}) => {
 
   return (
     <Layout>
-      
+
       <header>
         <h1 className="heading">Students</h1>
       </header>
