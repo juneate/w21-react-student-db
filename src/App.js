@@ -13,13 +13,13 @@ const App = () => {
       photo: `tim-berners-lee.jpg`
     }, {
       id: 256,
-      name: { first: `Grace`, last: `Hopper`, pref: null },
+      name: { first: `Grace`, last: `Hopper`, pref: `` },
       gpa: 3.9,
       enrolled: [ `WDDM 113`, `WDDM 114`, `WDDM 115` ],
       photo: `grace-hopper.jpg`
     }, {
       id: 263,
-      name: { first: `Alan`, last: `Turing`, pref: null },
+      name: { first: `Alan`, last: `Turing`, pref: `` },
       gpa: 2.3,
       enrolled: [],
       photo: `alan-turing.jpg`

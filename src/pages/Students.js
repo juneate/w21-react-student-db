@@ -12,16 +12,29 @@ const Students = ({data}) => {
   //   sort: (a, b) => a.gpa - b.gpa
   // }
 
-  // The minimum GPA to filter by
-  const [minGpa, setMinGpa] = useState(0.0)
-  
-  // Filter the results into a new array that's the same size or smaller
-  const searchResult = data.filter((student) => student.gpa >= minGpa)
+  // ****** FILTER STATES *******
+  // The state of each filter
+  const [minGpa, setMinGpa] = useState(3.0)
+  const [query, setQuery] = useState(`t`)
 
+
+  // ****** FILTER ******
+  // Filter the results into a new array that's the same size or smaller
+  const searchResult = data
+    .filter(({gpa}) => gpa >= minGpa)
+    .filter(({name}) => name.first.toUpperCase().includes(query.toUpperCase()) || 
+                        name.last.toUpperCase().includes(query.toUpperCase()) || 
+                        name.pref.toUpperCase().includes(query.toUpperCase()))
+
+  
+  // ****** EVENT LISTENERS *******
   // When the GPA value changes....
   const handleGpaChange = (event) => {
-    
     setMinGpa(Number(event.target.value))
+  }
+
+  const handleQueryChange = (event) => {
+    setQuery(event.target.value)
   }
 
 
@@ -32,10 +45,11 @@ const Students = ({data}) => {
         <h1 className="heading">Students</h1>
       </header>
 
+      {/* <SearchFilter /> will eventually replace this <form> */}
       <form className="filtering" name="filtering">
         <fieldset>
           <label htmlFor="filterName">Student Name:</label>
-          <input type="search" name="search" id="filterName" className="field search" placeholder="First or last name" autocomplete="off" />
+          <input type="search" name="search" id="filterName" value={query} onChange={handleQueryChange} className="field search" placeholder="First or last name" autocomplete="off" />
         </fieldset>
 
         <fieldset className="slider">
