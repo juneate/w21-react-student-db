@@ -13,10 +13,16 @@ const Students = ({data}) => {
   // }
 
   // The minimum GPA to filter by
-  const [minGpa, setMinGpa] = useState(3.0)
+  const [minGpa, setMinGpa] = useState(0.0)
   
   // Filter the results into a new array that's the same size or smaller
   const searchResult = data.filter((student) => student.gpa >= minGpa)
+
+  // When the GPA value changes....
+  const handleGpaChange = (event) => {
+    
+    setMinGpa(Number(event.target.value))
+  }
 
 
   return (
@@ -24,7 +30,6 @@ const Students = ({data}) => {
       
       <header>
         <h1 className="heading">Students</h1>
-        <p>Students with a GPA greater than {minGpa.toFixed(1)}</p>
       </header>
 
       <form className="filtering" name="filtering">
@@ -35,8 +40,8 @@ const Students = ({data}) => {
 
         <fieldset className="slider">
           <label htmlFor="filterGPA">Minimum GPA:</label>
-          <input type="range" name="gpa" id="filterGpa" value="0" min="0" max="4" step="0.1" />
-          <output htmlFor="filterGpa">0.0</output>
+          <input type="range" name="gpa" id="filterGpa" value={minGpa} min="0" max="4" step="0.1" onChange={handleGpaChange} />
+          <output htmlFor="filterGpa">{minGpa.toFixed(1)}</output>
         </fieldset>
 
         <fieldset id="filterEnrolled">
