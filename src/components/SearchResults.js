@@ -1,17 +1,18 @@
 import React from 'react'
 import StudentRow from 'components/StudentRow'
 
-const SearchResults = () => {
+const SearchResults = ({result}) => {
+
+  const theStudents = result.map((student) => <StudentRow key={student.id} data={student} />)
+
   return (
-    <>
-      <ul id="studentTable" className="records">
-        <StudentRow />
-        <StudentRow />
-        <StudentRow />
+    <div style={{backgroundColor: 'lightsteelblue', padding: `1em`}}>
+      <ul id="studentTable" className="records" style={{backgroundColor: `salmon`, padding: `1em`}}>
+        {theStudents}
       </ul>
 
-      <p id="numStudents"></p>
-    </>
+      <p id="numStudents" style={{backgroundColor: `lightgreen`}}>X students</p>
+    </div>
   )
 }
 

@@ -3,7 +3,7 @@ import Layout from 'components/Layout'
 import SearchFilter from 'components/SearchFilter'
 import SearchResults from 'components/SearchResults'
 
-const Students = () => {
+const Students = ({data}) => {
   return (
     <Layout>
       
@@ -13,7 +13,7 @@ const Students = () => {
 
       <SearchFilter />
 
-      <SearchResults />
+      <SearchResults result={data} />
 
     </Layout>
   )

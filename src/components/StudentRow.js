@@ -1,12 +1,14 @@
 import React from 'react'
 import noImg from 'img/student.png'
 
-const StudentRow = () => {
+const StudentRow = ({data}) => {
+  const {id, name, gpa, enrolled, photo} = data
+
   return (
     <li className="student">
-      <img src={noImg} alt="Alan" className="photo" />
-      <b>Turing, Alan</b>
-      <data value="2.3">2.3 GPA</data>
+      <img src={noImg} alt={`${name.first} ${name.last}`} className="photo" />
+      <b>{name.last}, {name.first} {(name.pref) ? `(${name.pref})` : ``}</b>
+      <data value={gpa}>{gpa} GPA</data>
     </li>
   )
 }
