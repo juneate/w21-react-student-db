@@ -14,8 +14,19 @@ const Students = ({data}) => {
 
   // ****** FILTER STATES *******
   // The state of each filter
-  const [minGpa, setMinGpa] = useState(0.0)
-  const [query, setQuery] = useState(``)
+
+  //const [minGpa, setMinGpa] = useState(0.0)
+  //const [query, setQuery] = useState(``)
+
+  const [searchState, setSearchState] = useState({
+    minGpa: 0.0,
+    query: ``,
+    courses: [],
+    sort: (a, b) => a.gpa - b.gpa
+  })
+
+  // For convenience, destructure all of the values into local variables
+  const {minGpa, query, courses, sort} = searchState
 
 
   // ****** FILTER ******
@@ -30,11 +41,21 @@ const Students = ({data}) => {
   // ****** EVENT LISTENERS *******
   // When the GPA value changes....
   const handleGpaChange = (event) => {
-    setMinGpa(Number(event.target.value))
+    //setMinGpa(Number(event.target.value))
+
+    setSearchState({
+      ...searchState,
+      minGpa: Number(event.target.value),
+    })
   }
 
   const handleQueryChange = (event) => {
-    setQuery(event.target.value)
+    //setQuery(event.target.value)
+
+    setSearchState({
+      ...searchState,
+      query: event.target.value
+    })
   }
 
 
