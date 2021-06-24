@@ -3,8 +3,13 @@ import StudentRow from 'components/StudentRow'
 
 const SearchResults = ({result}) => {
 
-  const theStudents = result.map((student) => <StudentRow key={student.id} data={student} />)
+  const theStudents = result.slice(0,3).map((student) => <StudentRow key={student.id} data={student} />)
   // Pagination is next
+
+  // How many are in the original set (total that meet the criteria)?
+  // How many to display per page?
+  // What page are we currently showing?
+
 
   return (
     <div style={{backgroundColor: 'lightsteelblue', padding: `1em`}}>
@@ -13,7 +18,7 @@ const SearchResults = ({result}) => {
       </ul>
 
       <p id="numStudents" style={{backgroundColor: `lightgreen`}}>
-        {theStudents.length} {(theStudents.length === 1) ? `student` : `students`}
+        {theStudents.length} {(theStudents.length === 1) ? `student` : `students`} of {result.length}
       </p>
     </div>
   )
