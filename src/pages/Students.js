@@ -14,10 +14,6 @@ const Students = ({data}) => {
 
   // ****** FILTER STATES *******
   // The state of each filter
-
-  //const [minGpa, setMinGpa] = useState(0.0)
-  //const [query, setQuery] = useState(``)
-
   const [searchState, setSearchState] = useState({
     minGpa: 0.0,
     query: ``,
@@ -36,6 +32,7 @@ const Students = ({data}) => {
     .filter(({name}) => name.first.toUpperCase().includes(query.toUpperCase()) || 
                         name.last.toUpperCase().includes(query.toUpperCase()) || 
                         name.pref.toUpperCase().includes(query.toUpperCase()))
+    .sort(sort)
 
   
   // ****** EVENT LISTENERS *******
@@ -55,6 +52,22 @@ const Students = ({data}) => {
     setSearchState({
       ...searchState,
       query: event.target.value
+    })
+  }
+
+
+  const handleSortChange = ({target}) => {
+
+    let sorting
+    if (target.value === "0") {
+      sorting = (a, b) => a.gpa - b.gpa
+    } else if (target.value === "1") {
+      sorting = (a, b) => b.gpa - a.gpa
+    }
+
+    setSearchState({
+      ...searchState,
+      sort: sorting
     })
   }
 
@@ -92,7 +105,7 @@ const Students = ({data}) => {
           <label htmlFor="filter115">WDDM 115</label>
         </fieldset>
 
-        <select name="sort" id="sortBy" className="field dropdown" defaultValue="0">
+        <select name="sort" id="sortBy" className="field dropdown" defaultValue="0" onChange={handleSortChange}>
           <option value="0">gpa, lowest to highest</option>
           <option value="1">gpa, highest to lowest</option>
         </select>
