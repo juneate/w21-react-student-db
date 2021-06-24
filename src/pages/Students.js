@@ -14,8 +14,8 @@ const Students = ({data}) => {
 
   // ****** FILTER STATES *******
   // The state of each filter
-  const [minGpa, setMinGpa] = useState(3.0)
-  const [query, setQuery] = useState(`t`)
+  const [minGpa, setMinGpa] = useState(0.0)
+  const [query, setQuery] = useState(``)
 
 
   // ****** FILTER ******
@@ -42,14 +42,14 @@ const Students = ({data}) => {
     <Layout>
 
       <header>
-        <h1 className="heading">Students</h1>
+        <h1 className="heading">Grades</h1>
       </header>
 
       {/* <SearchFilter /> will eventually replace this <form> */}
       <form className="filtering" name="filtering">
         <fieldset>
           <label htmlFor="filterName">Student Name:</label>
-          <input type="search" name="search" id="filterName" value={query} onChange={handleQueryChange} className="field search" placeholder="First or last name" autocomplete="off" />
+          <input type="search" name="search" id="filterName" value={query} onChange={handleQueryChange} className="field search" placeholder="First or last name" autoComplete="off" />
         </fieldset>
 
         <fieldset className="slider">
@@ -71,8 +71,8 @@ const Students = ({data}) => {
           <label htmlFor="filter115">WDDM 115</label>
         </fieldset>
 
-        <select name="sort" id="sortBy" className="field dropdown">
-          <option value="0" selected>gpa, lowest to highest</option>
+        <select name="sort" id="sortBy" className="field dropdown" defaultValue="0">
+          <option value="0">gpa, lowest to highest</option>
           <option value="1">gpa, highest to lowest</option>
         </select>
       </form>
