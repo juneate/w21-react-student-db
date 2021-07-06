@@ -23,6 +23,48 @@ const App = () => {
       gpa: 2.3,
       enrolled: [],
       photo: `alan-turing.jpg`
+    }, {
+      id: 264,
+      name: { first: `Hello`, last: `World`, pref: `` },
+      gpa: 3.3,
+      enrolled: [],
+      photo: ``
+    }, {
+      id: 265,
+      name: { first: `Hello`, last: `World`, pref: `` },
+      gpa: 1.3,
+      enrolled: [],
+      photo: ``
+    }, {
+      id: 266,
+      name: { first: `Hello`, last: `World`, pref: `` },
+      gpa: 3.5,
+      enrolled: [],
+      photo: ``
+    }, {
+      id: 267,
+      name: { first: `Hello`, last: `World`, pref: `` },
+      gpa: 3.9,
+      enrolled: [],
+      photo: ``
+    }, {
+      id: 268,
+      name: { first: `Hello`, last: `World`, pref: `` },
+      gpa: 4,
+      enrolled: [],
+      photo: ``
+    }, {
+      id: 269,
+      name: { first: `Hello`, last: `World`, pref: `` },
+      gpa: 0,
+      enrolled: [],
+      photo: ``
+    }, {
+      id: 270,
+      name: { first: `Hello`, last: `World`, pref: `` },
+      gpa: 2.0,
+      enrolled: [],
+      photo: ``
     }
   ]
 
