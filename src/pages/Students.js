@@ -32,6 +32,8 @@ const Students = ({data}) => {
     .filter(({name}) => name.first.toUpperCase().includes(query.toUpperCase()) || 
                         name.last.toUpperCase().includes(query.toUpperCase()) || 
                         name.pref.toUpperCase().includes(query.toUpperCase()))
+    .filter(({enrolled}) => courses.length === 0 || 
+                        enrolled.filter((course) => courses.includes(course)).length > 0)
     .sort(sort)
 
   
@@ -71,7 +73,25 @@ const Students = ({data}) => {
     })
   }
 
+  const handleEnrolledChange = ({target}) => {
+    console.log(event)
+    // When a check or uncheck a checkbox, add/remove the "value" from the Array
 
+    if (target.checked) {
+      setSearchState({
+        ...searchState,
+        courses: [...searchState.courses, target.value]
+      })
+    } else {
+      setSearchState({
+        ...searchState,
+        courses: searchState.courses.filter((course) => course !== target.value)
+      })
+    }
+  
+  }
+
+  console.log(searchState)
   return (
     <Layout>
 
@@ -92,7 +112,7 @@ const Students = ({data}) => {
           <output htmlFor="filterGpa">{minGpa.toFixed(1)}</output>
         </fieldset>
 
-        <fieldset id="filterEnrolled">
+        <fieldset id="filterEnrolled" onChange={handleEnrolledChange}>
           <p>Enrolled in:</p>
           
           <input type="checkbox" name="enrolled" id="filter113" value="WDDM 113" />
@@ -103,6 +123,9 @@ const Students = ({data}) => {
 
           <input type="checkbox" name="enrolled" id="filter115" value="WDDM 115" />
           <label htmlFor="filter115">WDDM 115</label>
+
+          <input type="checkbox" name="enrolled" id="filter116" value="WDDM 116" />
+          <label htmlFor="filter116">WDDM 116</label>
         </fieldset>
 
         <select name="sort" id="sortBy" className="field dropdown" defaultValue="0" onChange={handleSortChange}>

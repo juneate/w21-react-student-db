@@ -39,7 +39,7 @@ const SearchResults = ({result}) => {
   return (
     <div style={{backgroundColor: 'lightsteelblue', padding: `1em`}}>
       <ul id="studentTable" className="records" style={{backgroundColor: `salmon`, padding: `1em`}}>
-        {theStudents}
+        {(theStudents.length) ? theStudents : `No matching students`}
       </ul>
 
       <p id="numStudents" style={{backgroundColor: `lightgreen`}}>
