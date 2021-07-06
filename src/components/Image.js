@@ -8,7 +8,7 @@ const Image = ({src, alt, ...attr}) => {
   import(`img/${src}`).then((image) => setImg(image.default))
 
   return (
-    <img src={(img) ? img : noImg} alt={alt} className="photo" {...attr} />
+    <img src={(img) ? img : noImg} alt={alt} {...attr} />
   )
 }
 
