@@ -1,12 +1,13 @@
 import React from 'react'
-import noImg from 'img/student.png'
+import Image from 'components/Image'
 
 const StudentRow = ({data}) => {
+
   const {id, name, gpa, enrolled, photo} = data
 
   return (
     <li className="student">
-      <img src={noImg} alt={`${name.first} ${name.last}`} className="photo" />
+      <Image src={photo} alt={`${name.first} ${name.last}`} width="32" height="32" />
       <b>{name.last}, {name.first} {(name.pref) ? `(${name.pref})` : ``}</b>
       <data value={gpa}>{gpa} GPA</data>
     </li>
