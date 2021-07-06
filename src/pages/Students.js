@@ -74,7 +74,6 @@ const Students = ({data}) => {
   }
 
   const handleEnrolledChange = ({target}) => {
-    console.log(event)
     // When a check or uncheck a checkbox, add/remove the "value" from the Array
 
     if (target.checked) {
