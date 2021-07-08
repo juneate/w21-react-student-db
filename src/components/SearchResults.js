@@ -5,6 +5,7 @@ import 'antd/dist/antd.css'
 
 const SearchResults = ({result}) => {
   
+  // When the filters change, this value has to be updated if the filter results in less students than the page we're on
   const [currPage, setCurrPage] = useState(1)
   const pageSize = 3
 
@@ -43,12 +44,16 @@ const SearchResults = ({result}) => {
       </ul>
 
       <p id="numStudents" style={{backgroundColor: `lightgreen`}}>
-        <button onClick={()=> updatePage(currPage-1)} disabled={(currPage === 1 )?`disabled`:``}>prev</button>
+        <button onClick={()=> updatePage(currPage-1)} disabled={(currPage === 1 )?`disabled`:``}>
+          <span className="material-icons">navigate_before</span>
+        </button>
         Showing {(theStudents.length === 1) ? `student` : `students`} {startRow + 1} to {Math.min(endRow, result.length)} of {result.length}
-        <button onClick={()=> updatePage(currPage+1)} disabled={(currPage === totalPages )?`disabled`:``} >next</button>
+        <button onClick={()=> updatePage(currPage+1)} disabled={(currPage === totalPages )?`disabled`:``} >
+          <span className="material-icons">navigate_next</span>
+        </button>
       </p>
 
-      <Pagination defaultCurrent={currPage} total={result.length} defaultPageSize={pageSize} onChange={(page) => setCurrPage(page)} />
+      <Pagination current={currPage} total={result.length} defaultPageSize={pageSize} onChange={(page) => setCurrPage(page)} />
     </div>
   )
 }

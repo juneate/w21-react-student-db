@@ -1,5 +1,8 @@
 import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import 'material-design-icons/iconfont/material-icons.css'
 import Students from 'pages/Students'
+import Student from 'pages/Student'
 
 const App = () => {
 
@@ -69,9 +72,17 @@ const App = () => {
   ]
 
   // Generate one StudentRow per object above.
+  // <Students data={studentsAr} />
+  // <Student />
+
 
   return (
-    <Students data={studentsAr} />
+    <Router>
+      <Switch>
+        <Route exact path="/"><Students data={studentsAr} /></Route>
+        <Route path="/student"><Student /></Route>
+      </Switch>
+    </Router>
   )
 }
 
