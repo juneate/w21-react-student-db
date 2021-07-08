@@ -9,7 +9,7 @@ const StudentRow = ({data}) => {
   return (
     <li className="student">
       <Image src={photo} alt={`${name.first} ${name.last}`} className="photo" width="32" height="32" />
-      <Link to="/student"><b>{name.last}, {name.first} {(name.pref) ? `(${name.pref})` : ``}</b></Link>
+      <Link to={`/student/${id}`}><b>{name.last}, {name.first} {(name.pref) ? `(${name.pref})` : ``}</b></Link>
       <data value={gpa}>{gpa} GPA</data>
     </li>
   )

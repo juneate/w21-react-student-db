@@ -80,7 +80,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/"><Students data={studentsAr} /></Route>
-        <Route path="/student"><Student /></Route>
+        <Route path="/student/:slug"><Student /></Route>
       </Switch>
     </Router>
   )
