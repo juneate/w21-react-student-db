@@ -1,9 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Layout from 'components/Layout'
+import UserContext from 'contexts/user'
 // import SearchFilter from 'components/SearchFilter'
 import SearchResults from 'components/SearchResults'
 
 const Students = ({data}) => {
+
+
+  const userData = useContext(UserContext)
+console.log(userData)
 
   // {
   //   query: '',

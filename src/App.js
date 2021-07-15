@@ -1,8 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import 'material-design-icons/iconfont/material-icons.css'
+import UserContext from 'contexts/user'
 import Students from 'pages/Students'
 import Student from 'pages/Student'
+import FourOhFour from 'pages/FourOhFour'
 
 const App = () => {
 
@@ -69,7 +71,16 @@ const App = () => {
       enrolled: [],
       photo: ``
     }
-  ]
+  ] 
+
+  // fetch() my user data, ensure it's on every page
+  const userData = {
+    id: 1234,
+    username: `juneate`,
+    photo: `tim-berners-lee.jpg`
+  }
+
+
 
   // Generate one StudentRow per object above.
   // <Students data={studentsAr} />
@@ -77,12 +88,18 @@ const App = () => {
 
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/"><Students data={studentsAr} /></Route>
-        <Route path="/student/:slug"><Student /></Route>
-      </Switch>
-    </Router>
+    <UserContext.Provider value={userData}>
+      <Router>
+        <Switch>
+          <Route exact path="/"><Students data={studentsAr} /></Route>
+          <Route path="/student/:slug"><Student /></Route>
+          
+          <Route path="*"><FourOhFour /></Route>
+          {/* <Route path="/404"><FourOhFour /></Route>
+          <Redirect to="/404" /> */}
+        </Switch>
+      </Router>
+    </UserContext.Provider>
   )
 }
 
