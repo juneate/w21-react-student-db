@@ -80,6 +80,11 @@ const App = () => {
     photo: `tim-berners-lee.jpg`
   }
 
+  const updateUsername = (name) => {
+    // Go update the database
+    userData.username = name
+    console.log(`App()`, userData)
+  }
 
 
   // Generate one StudentRow per object above.
@@ -88,8 +93,8 @@ const App = () => {
 
 
   return (
-    <UserContext.Provider value={userData}>
-      <Router>
+    <Router>
+      <UserContext.Provider value={{data:userData, updateUsername:updateUsername}}>
         <Switch>
           <Route exact path="/"><Students data={studentsAr} /></Route>
           <Route path="/student/:slug"><Student /></Route>
@@ -98,8 +103,8 @@ const App = () => {
           {/* <Route path="/404"><FourOhFour /></Route>
           <Redirect to="/404" /> */}
         </Switch>
-      </Router>
-    </UserContext.Provider>
+      </UserContext.Provider>
+    </Router>
   )
 }
 

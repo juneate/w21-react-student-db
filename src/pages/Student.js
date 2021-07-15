@@ -6,9 +6,10 @@ import Layout from 'components/Layout'
 const Student = () => {
 
   const {slug} = useParams()
-  const userData = useContext(UserContext)
+  const user = useContext(UserContext)
 
-  console.log(userData)
+  console.log(user.data)
+  user.updateUsername(`roccop`)
 
   return (
     <Layout>
