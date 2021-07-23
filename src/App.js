@@ -16,7 +16,6 @@ const App = () => {
   const db = firebase.firestore()
 
  
-
   // Runs only once, after the first render
   useEffect(() => {
 
@@ -24,20 +23,12 @@ const App = () => {
 
     // READ: student data
     db.collection(`students`).get().then((snapshot) => {
-      /* snapshot.docs.forEach(doc => {
-        const record = doc.data()
-        //console.log(`FIRESTORE:`, record)
-        setStudentsAr([...studentsAr, record])
-      }) */
-
-
       setStudentsAr(
         // An accumulation of the student records into an Array
         snapshot.docs.reduce((students, doc) => [...students, doc.data()], [])
       )
 
       setLoading(false)  // Remove loading modal
-
     })
   }, [])
 
