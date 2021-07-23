@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import 'material-design-icons/iconfont/material-icons.css'
+import firebase from 'utils/firebase'
 import UserContext from 'contexts/user'
 import Students from 'pages/Students'
 import Student from 'pages/Student'
@@ -8,8 +9,42 @@ import FourOhFour from 'pages/FourOhFour'
 
 const App = () => {
 
+  const [studentsAr, setStudentsAr] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // Connect to the DB
+  const db = firebase.firestore()
+
+ 
+
+  // Runs only once, after the first render
+  useEffect(() => {
+
+    setLoading(true) // "Loading..." modal
+
+    // READ: student data
+    db.collection(`students`).get().then((snapshot) => {
+      /* snapshot.docs.forEach(doc => {
+        const record = doc.data()
+        //console.log(`FIRESTORE:`, record)
+        setStudentsAr([...studentsAr, record])
+      }) */
+
+
+      setStudentsAr(
+        // An accumulation of the student records into an Array
+        snapshot.docs.reduce((students, doc) => [...students, doc.data()], [])
+      )
+
+      setLoading(false)  // Remove loading modal
+
+    })
+  }, [])
+
+
+
   // fetch() from the server, this is the result...
-  const studentsAr = [
+  /* const studentsAr = [
     {
       id: 234,
       name: { first: `Tim`, last: `Berners-Lee`, pref: `TBL` },
@@ -71,7 +106,7 @@ const App = () => {
       enrolled: [],
       photo: ``
     }
-  ] 
+  ]  */
 
   // fetch() my user data, ensure it's on every page
   const userData = {
@@ -93,6 +128,8 @@ const App = () => {
 
 
   return (
+    <>
+    { loading && <div class="loading"><span class="flash">loading...</span></div> }
     <Router>
       <UserContext.Provider value={{data:userData, updateUsername:updateUsername}}>
         <Switch>
@@ -105,6 +142,7 @@ const App = () => {
         </Switch>
       </UserContext.Provider>
     </Router>
+    </>
   )
 }
 
