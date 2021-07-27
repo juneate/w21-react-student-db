@@ -5,8 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack serve --mode development --history-api-fallback",
-    "server": "nodemon server/index.js",
-    "build": "webpack --mode production"
+    "server": "nodemon --watch server server/index.js",
+    "build": "webpack --watch --progress --mode production"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +27,9 @@
   },
   "dependencies": {
     "antd": "^4.16.6",
+    "connect-livereload": "^0.6.1",
     "express": "^4.17.1",
+    "livereload": "^0.9.3",
     "material-design-icons": "^3.0.1",
     "nodemon": "^2.0.12",
     "react": "^17.0.2",
