@@ -13,10 +13,10 @@ const App = () => {
   //const [loading, setLoading] = useState(true)
 
   const [studentData, setStudentData] = useState({
-    studentAr: [],
+    studentsAr: [],
     loading: true
   })
-  const {studentAr, loading} = studentData
+  const {studentsAr, loading} = studentData
 
 
   // Connect to the DB
@@ -27,14 +27,14 @@ const App = () => {
   useEffect(() => {
 
     setStudentData({
-      studentAr: [...studentAr],
+      studentsAr: [...studentsAr],
       loading: true
     })
 
     // READ: student data
     db.collection(`students`).get().then((snapshot) => {
       setStudentData({
-        studentAr: snapshot.docs.reduce((students, doc) => [...students, doc.data()], []),
+        studentsAr: snapshot.docs.reduce((students, doc) => [...students, doc.data()], []),
         loading: false
       })
     })
