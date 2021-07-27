@@ -9,8 +9,15 @@ import FourOhFour from 'pages/FourOhFour'
 
 const App = () => {
 
-  const [studentsAr, setStudentsAr] = useState([])
-  const [loading, setLoading] = useState(true)
+  //const [studentsAr, setStudentsAr] = useState([])
+  //const [loading, setLoading] = useState(true)
+
+  const [studentData, setStudentData] = useState({
+    studentAr: [],
+    loading: true
+  })
+  const {studentAr, loading} = studentData
+
 
   // Connect to the DB
   const db = firebase.firestore()
@@ -19,21 +26,22 @@ const App = () => {
   // Runs only once, after the first render
   useEffect(() => {
 
-    setLoading(true) // "Loading..." modal
+    setStudentData({
+      studentAr: [...studentAr],
+      loading: true
+    })
 
     // READ: student data
     db.collection(`students`).get().then((snapshot) => {
-      setStudentsAr(
-        // An accumulation of the student records into an Array
-        snapshot.docs.reduce((students, doc) => [...students, doc.data()], [])
-      )
-
-      setLoading(false)  // Remove loading modal
+      setStudentData({
+        studentAr: snapshot.docs.reduce((students, doc) => [...students, doc.data()], []),
+        loading: false
+      })
     })
   }, [])
 
 
-  
+
   // fetch() my user data, ensure it's on every page
   const userData = {
     id: 1234,
