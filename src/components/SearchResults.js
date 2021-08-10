@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import StudentRow from 'components/StudentRow'
-import { Pagination } from 'antd'
-import 'antd/dist/antd.css'
+// import { Pagination } from 'antd'
+// import 'antd/dist/antd.css'
 
 const SearchResults = ({result}) => {
   
@@ -53,7 +53,7 @@ const SearchResults = ({result}) => {
         </button>
       </p>
 
-      <Pagination current={currPage} total={result.length} defaultPageSize={pageSize} onChange={(page) => setCurrPage(page)} />
+      {/* <Pagination current={currPage} total={result.length} defaultPageSize={pageSize} onChange={(page) => setCurrPage(page)} /> */}
     </div>
   )
 }

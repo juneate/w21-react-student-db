@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import Layout from 'components/Layout'
+import Layout from 'containers/Layout'
 import UserContext from 'contexts/user'
 // import SearchFilter from 'components/SearchFilter'
 import SearchResults from 'components/SearchResults'

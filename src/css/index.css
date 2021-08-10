@@ -1,20 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  --font-body: 'Atkinson Hyperlegible', helvetica, arial, sans-serif;
+  --font-heading: 'Anton', impact, sans-serif;
+  --col-a: #b482d1;
+  --col-a-darker: #9c67bc;
+}
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0em;
-  font: 1em helvetica, arial, sans-serif;
+  font: 1em var(--font-body);
+  background-color: #222;
+  color: #fff;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
 input, select, button, textarea {
   font: inherit;
 }
+
+a {
+  color: var(--col-a);
+  text-decoration: none;
+}
+
+
 
 .layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
 .container {
   padding: 0 1em;
   width: 100%;
@@ -22,15 +48,7 @@ input, select, button, textarea {
   margin: 0 auto;
 }
 
-.toplevel-footer, .toplevel-header {
-  display: flow-root;
-  background-color: #333;
-  color: #fff;
-}
 
-.toplevel-main {
-  flex-grow: 1;
-}
 
 
 fieldset {
@@ -89,28 +107,16 @@ fieldset {
 
 
 
-.loading {
-  display: grid;
-  place-content: center;
-  position: fixed;
-  z-index: 9999;
-  inset: 0; /* top/right/bottom/left */
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  color: #fff;
-  font-size: 3em;
-}
 
-.flash {
-  animation: flashing 2s infinite;
-}
 
-@keyframes flashing {
-  0%, 100% {
-    opacity: 1;
+
+@media screen and (min-width: 40rem) {
+  html {
+    font-size: 1.2em;
   }
-  50% {
-    opacity: 0.2;
+}
+@media screen and (min-width: 60rem) {
+  html {
+    font-size: 1.5em;
   }
 }
