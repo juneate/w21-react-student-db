@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "webpack serve --mode development --history-api-fallback",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "npm run build; netlify deploy --prod --dir=dist;"
   },
   "keywords": [],
   "author": "",
