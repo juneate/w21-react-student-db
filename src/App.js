@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import 'material-design-icons/iconfont/material-icons.css'
 import firebase from 'utils/firebase'
-import UserContext from 'contexts/user'
+import UserProvider from 'contexts/user'
 import CoursesContext from 'contexts/courses'
 import Loading from 'components/Loading'
 import Dashboard from 'pages/Dashboard'
@@ -17,15 +17,6 @@ const App = () => {
 
   const [loading, setLoading] = useState(true)
 
-  // fetch() my user data, ensure it's on every page
-  const [userData, setUserData] = useState({
-    id: 1234,
-    username: `juneate`,
-    photo: `tim-berners-lee.jpg`,
-    favourites: [
-      `f21-wddm-114-applied-des-1`
-    ]
-  })
   const [studentsData, setStudentsData] = useState([])
   const [coursesData, setCoursesData] = useState([])
 
@@ -58,25 +49,14 @@ const App = () => {
 
 
   
-  const toggleFavourite = (id) => {
-    console.log(id)
-    if (userData.favourites.includes(id)) {
-      // Slice out a
-      setUserData({...userData, favourites: userData.favourites.filter((fav) => fav !== id)})
-    } else {
-      // Add it in
-      setUserData({...userData, favourites: [...userData.favourites, id]})
-    }
-  }
-
 
   if (loading)
-   return <Loading>Loading...</Loading>
+    return <Loading>Loading...</Loading>
 
   return (
     <>      
       <Router>
-        <UserContext.Provider value={{data:userData, toggleFavourite:toggleFavourite}}>
+        <UserProvider>
           <Switch>
             <Route exact path="/"><Dashboard /></Route>
             <Route path="/courses"><Courses data={coursesData} /></Route>
@@ -90,7 +70,7 @@ const App = () => {
             <Route path="/student/:slug"><Student /></Route>
             <Route path="*"><FourOhFour /></Route>
           </Switch>
-        </UserContext.Provider>
+        </UserProvider>
       </Router>
     </>
   )

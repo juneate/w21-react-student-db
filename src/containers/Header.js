@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import styled from 'styled-components'
-import UserContext from 'contexts/user'
+import {UserContext} from 'contexts/user'
 
 const Header = (props) => {
 
