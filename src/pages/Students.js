@@ -1,14 +1,15 @@
 import React, {useState, useContext} from 'react'
+import styled from 'styled-components'
 import Layout from 'containers/Layout'
 import UserContext from 'contexts/user'
 // import SearchFilter from 'components/SearchFilter'
-import SearchResults from 'components/SearchResults'
+import SearchResults from 'containers/SearchResults'
 
 const Students = ({data}) => {
 
 
   const userData = useContext(UserContext)
-console.log(userData)
+  console.log(userData)
 
   // {
   //   query: '',
@@ -62,10 +63,9 @@ console.log(userData)
     })
   }
 
-
   const handleSortChange = ({target}) => {
-
     let sorting
+
     if (target.value === "0") {
       sorting = (a, b) => a.gpa - b.gpa
     } else if (target.value === "1") {
@@ -95,53 +95,68 @@ console.log(userData)
   
   }
 
-  console.log(searchState)
   return (
     <Layout>
 
       <header>
-        <h1 className="heading">Grades</h1>
+        <h1 className="heading">Students</h1>
       </header>
 
       {/* <SearchFilter /> will eventually replace this <form> */}
-      <form className="filtering" name="filtering">
+      <Filter name="filtering">
+        <h2>Search and filter</h2>
         <fieldset>
-          <label htmlFor="filterName">Student Name:</label>
+          <label htmlFor="filterName">Student Name:</label><br />
           <input type="search" name="search" id="filterName" value={query} onChange={handleQueryChange} className="field search" placeholder="First or last name" autoComplete="off" />
         </fieldset>
 
-        <fieldset className="slider">
-          <label htmlFor="filterGPA">Minimum GPA:</label>
-          <input type="range" name="gpa" id="filterGpa" value={minGpa} min="0" max="4" step="0.1" onChange={handleGpaChange} />
+        <fieldset>
+          <label htmlFor="filterGPA">Minimum GPA:</label><br />
+          <input type="range" name="gpa" id="filterGpa" value={minGpa} min="0" max="4" step="0.1" onChange={handleGpaChange} />{` `}
           <output htmlFor="filterGpa">{minGpa.toFixed(1)}</output>
         </fieldset>
 
         <fieldset id="filterEnrolled" onChange={handleEnrolledChange}>
-          <p>Enrolled in:</p>
+          <label>Enrolled in:</label><br />
           
-          <input type="checkbox" name="enrolled" id="filter113" value="WDDM 113" />
+          <input type="checkbox" name="enrolled" id="filter113" value="WDDM 113" />{` `}
           <label htmlFor="filter113">WDDM 113</label>
 
-          <input type="checkbox" name="enrolled" id="filter114" value="WDDM 114" />
+          <input type="checkbox" name="enrolled" id="filter114" value="WDDM 114" />{` `}
           <label htmlFor="filter114">WDDM 114</label>
 
-          <input type="checkbox" name="enrolled" id="filter115" value="WDDM 115" />
+          <input type="checkbox" name="enrolled" id="filter115" value="WDDM 115" />{` `}
           <label htmlFor="filter115">WDDM 115</label>
 
-          <input type="checkbox" name="enrolled" id="filter116" value="WDDM 116" />
+          <input type="checkbox" name="enrolled" id="filter116" value="WDDM 116" />{` `}
           <label htmlFor="filter116">WDDM 116</label>
         </fieldset>
 
-        <select name="sort" id="sortBy" className="field dropdown" defaultValue="0" onChange={handleSortChange}>
-          <option value="0">gpa, lowest to highest</option>
-          <option value="1">gpa, highest to lowest</option>
-        </select>
-      </form>
+        <fieldset>
+          Sort by:<br />
+          <select name="sort" id="sortBy" className="field dropdown" defaultValue="0" onChange={handleSortChange}>
+            <option value="0">gpa, lowest to highest</option>
+            <option value="1">gpa, highest to lowest</option>
+          </select>
+        </fieldset>
+      </Filter>
 
       <SearchResults result={searchResult} />
 
     </Layout>
   )
 }
+
+
+const Filter = styled.form`
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 0.5em;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
+  padding: 1em;
+
+  input + label {
+    margin-right: 1em;
+  }
+`
 
 export default Students

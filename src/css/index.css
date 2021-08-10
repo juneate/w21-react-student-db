@@ -73,30 +73,9 @@ fieldset {
   padding-right: 2em;
 }
 
-.filtering {
-  border-radius: 0.5em;
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
-  padding: 1em;
-}
-.filtering input + label {
-  margin-right: 1em;
-}
 
-.records {
-  padding-left: 0;
-  list-style-type: none;
-}
-.student {
-  background-color: #ddd;
-  display: grid;
-  grid-template-columns: auto auto 1fr;
-  grid-gap: 1em;
-  padding: 0.5em;
-  margin: 0.5em 0;
-}
-.student data {
-  text-align: right;
-}
+
+
 .photo {
   width: 2em;
   height: 2em;
